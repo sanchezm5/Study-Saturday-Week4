@@ -32634,7 +32634,7 @@ exports.default = SingleStudent;
 
 
 Object.defineProperty(exports, "__esModule", {
-  value: true
+    value: true
 });
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -32643,7 +32643,15 @@ var _react = __webpack_require__(44);
 
 var _react2 = _interopRequireDefault(_react);
 
+var _axios = __webpack_require__(353);
+
+var _axios2 = _interopRequireDefault(_axios);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -32652,48 +32660,96 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 var NewStudentForm = function (_Component) {
-  _inherits(NewStudentForm, _Component);
+    _inherits(NewStudentForm, _Component);
 
-  function NewStudentForm() {
-    _classCallCheck(this, NewStudentForm);
+    function NewStudentForm() {
+        _classCallCheck(this, NewStudentForm);
 
-    return _possibleConstructorReturn(this, (NewStudentForm.__proto__ || Object.getPrototypeOf(NewStudentForm)).apply(this, arguments));
-  }
+        var _this = _possibleConstructorReturn(this, (NewStudentForm.__proto__ || Object.getPrototypeOf(NewStudentForm)).call(this));
 
-  _createClass(NewStudentForm, [{
-    key: "render",
-    value: function render() {
-      return _react2.default.createElement(
-        "form",
-        { onSubmit: this.handleSubmit },
-        _react2.default.createElement(
-          "label",
-          null,
-          "First Name:",
-          _react2.default.createElement("input", { type: "text", name: "firstName" })
-        ),
-        _react2.default.createElement(
-          "label",
-          null,
-          "Last Name:",
-          _react2.default.createElement("input", { type: "text", name: "lastName" })
-        ),
-        _react2.default.createElement(
-          "label",
-          null,
-          "Email:",
-          _react2.default.createElement("input", { type: "email", name: "email" })
-        ),
-        _react2.default.createElement(
-          "button",
-          { type: "submit" },
-          "Submit New Student"
-        )
-      );
+        _this.state = {
+            firstName: '',
+            lastName: '',
+            email: ''
+        };
+        _this.handleChange = _this.handleChange.bind(_this);
+        _this.handleSubmit = _this.handleSubmit.bind(_this);
+        return _this;
     }
-  }]);
 
-  return NewStudentForm;
+    _createClass(NewStudentForm, [{
+        key: 'handleChange',
+        value: function handleChange(event) {
+            return this.setState(_defineProperty({}, event.target.name, event.target.value));
+        }
+    }, {
+        key: 'handleSubmit',
+        value: function () {
+            var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(event) {
+                return regeneratorRuntime.wrap(function _callee$(_context) {
+                    while (1) {
+                        switch (_context.prev = _context.next) {
+                            case 0:
+                                event.preventDefault();
+                                try {
+                                    this.setState({
+                                        firstName: '',
+                                        lastName: '',
+                                        email: ''
+                                    });
+                                } catch (err) {
+                                    console.log(err);
+                                }
+
+                            case 2:
+                            case 'end':
+                                return _context.stop();
+                        }
+                    }
+                }, _callee, this);
+            }));
+
+            function handleSubmit(_x) {
+                return _ref.apply(this, arguments);
+            }
+
+            return handleSubmit;
+        }()
+    }, {
+        key: 'render',
+        value: function render() {
+            console.log(this.state);
+            return _react2.default.createElement(
+                'form',
+                { onSubmit: this.handleSubmit },
+                _react2.default.createElement(
+                    'label',
+                    null,
+                    'First Name:',
+                    _react2.default.createElement('input', { onChange: this.handleChange, type: 'text', name: 'firstName', value: this.state.firstName })
+                ),
+                _react2.default.createElement(
+                    'label',
+                    null,
+                    'Last Name:',
+                    _react2.default.createElement('input', { onChange: this.handleChange, type: 'text', name: 'lastName', value: this.state.lastName })
+                ),
+                _react2.default.createElement(
+                    'label',
+                    null,
+                    'Email:',
+                    _react2.default.createElement('input', { onChange: this.handleChange, type: 'email', name: 'email', value: this.state.email })
+                ),
+                _react2.default.createElement(
+                    'button',
+                    { type: 'submit' },
+                    'Submit New Student'
+                )
+            );
+        }
+    }]);
+
+    return NewStudentForm;
 }(_react.Component);
 
 exports.default = NewStudentForm;
